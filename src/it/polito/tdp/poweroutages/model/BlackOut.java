@@ -126,9 +126,11 @@ public class BlackOut {
 			return false;
 		return true;
 	}
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return nercId + " - " + dataInizioBlackOut + " - " + dataFineBlackOut;
+	}
 	
 
 }

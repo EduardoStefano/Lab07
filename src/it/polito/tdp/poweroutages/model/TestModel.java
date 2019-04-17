@@ -6,7 +6,7 @@ public class TestModel {
 		
 		Model model = new Model();
 		//System.out.println(model.getNercList());
-		System.out.print(model.listaBlackOut);
-		model.calcolaSottoInsiemeBlackOut(8, 4, 200);
+		System.out.print(model.calcolaSottoInsiemeBlackOut(3, 4, 50));
+		
 	}
 }

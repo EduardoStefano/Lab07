@@ -34,23 +34,25 @@ public class Model {
 		
 		if(numeroTotPersone(parziale)>numeroTotPersone(best)) {
 			best = new LinkedList<BlackOut>(parziale);
-			//return;
+			//return
 		}
 		
 		//algoritmo
-		for(int i=L; i<=listaBlackOut.size(); i++) {
+		for(int i=L; i<listaBlackOut.size(); i++) {
 			if(parziale.size()==0) {
-				parziale.add(listaBlackOut.get(i));
-				cerca(parziale, L+1, maxYears, maxHours);
-				parziale.remove(i-1);
+				if(verifica(parziale, listaBlackOut.get(i))) {
+					parziale.add(listaBlackOut.get(i));
+					cerca(parziale, L+1, maxYears, maxHours);
+					parziale.remove(listaBlackOut.get(i));
+				}
 			}
 			else {
 				if((durataParzialeOre(parziale))<maxHours) {
 					if((parziale.get(0).getAnno()-listaBlackOut.get(i).getAnno())<=maxYears) {
-						if(verifica(parziale, best)) {
+						if(verifica(parziale, listaBlackOut.get(i))) {
 							parziale.add(listaBlackOut.get(i));
 							cerca(parziale, L+1, maxYears, maxHours);
-							parziale.remove(i-1);	
+							parziale.remove(listaBlackOut.get(i));	
 						}
 					}
 				}
@@ -82,11 +84,12 @@ public class Model {
 		return somma;
 	}
 	
-	public boolean verifica(List<BlackOut> parziale, List<BlackOut> best) {
+	public boolean verifica(List<BlackOut> parziale, BlackOut best) {
 		if(parziale==null || best==null)
 			return true;
 		for(int i=0; i<parziale.size(); i++) {
-			
+			if(parziale.get(i).equals(best))
+				return false;
 		}
 		return true;
 	}
